@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">AnimeStore</string>
+    <string name="log_in"> Iniciar sesión </string>
+    <string name="sign_up"> Registrarse </string>
+    <string name="password"> Contraseña </string>
+    <string name="new_user"> ¿Eres nuevo? : Regístrate </string>
+    <string name="email"> Correo electrónico </string>
+    <string name="user_name"> Nombre del usuario </string>
+    <string name="enter_user_data"> Ingreses sus datos aquí </string>
+    <string name="name_package"> Nombre del paquete</string>
+    <string name="price_package"> Precio del paquete</string>
+    <string name="add_to_car"> Agregar al carrito </string>
+    <string name="buy_now"> Comprar ahora </string>
+    <string name="product_details"> Detalles de productos </string>
+    <string name="description"> Descripción general del paquete
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+        nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit
+        in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</string>
+</resources>
