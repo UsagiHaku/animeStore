@@ -32,7 +32,7 @@ class ProductDetailPresenter : ProductDetailContract.Presenter {
             override fun onResponse(call: Call<Product>, response: Response<Product>) {
                 when (response.code()) {
                     200 -> response.body()?.let {
-                        view!!.showProductDetail(it)
+                        view?.showProductDetail(it)
                     }
                     401 -> {
                     }

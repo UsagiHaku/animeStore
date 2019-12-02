@@ -2,24 +2,29 @@ package com.example.presentation.listProducts
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.animestore.R
+import com.example.data.AnimeStoreDatabase
+import com.example.data.OrderItemRepository
+import com.example.domain.OrderItem
 import com.example.domain.Product
+import com.example.presentation.cart.CartActivity
 import com.example.presentation.productDetail.ProductDetailActivity
+import java.util.concurrent.Executors
 
 
 class ListProductsActivity : AppCompatActivity(), ListProductsContract.View {
     private var toolbar: Toolbar? = null
-    private var recyclerView: RecyclerView? = null
+    private var recyclerView: androidx.recyclerview.widget.RecyclerView? = null
     private var adapter: ListProductsAdapter? = null
     private var presenter: ListProductsContract.Presenter? = null
 
+    private lateinit var orderItemsRepository: OrderItemRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,35 +32,35 @@ class ListProductsActivity : AppCompatActivity(), ListProductsContract.View {
 
         presenter = ListProductsPresenter(this)
 
-        toolbar = findViewById(R.id.toolbar) as Toolbar
+        toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
         recyclerView = findViewById(R.id.recyclerView)
-        recyclerView!!.layoutManager = LinearLayoutManager(this)
+        recyclerView?.layoutManager = LinearLayoutManager(this)
 
+        val orderItemDao = AnimeStoreDatabase.getDatabase(application).orderItemDao()
 
-        adapter = ListProductsAdapter(this, ArrayList(), object : ListProductsAdapter.OnProductClickListener {
-            override fun onProductClick(product: Product) {
-                //Toast.makeText(getApplicationContext(), product.getName(), Toast.LENGTH_SHORT).show();
-                val intent = Intent(this@ListProductsActivity, ProductDetailActivity::class.java)
-                intent.putExtra("PRODUCT_NAME", product.name)
-                intent.putExtra("PRODUCT_IMAGE", product.image)
-                intent.putExtra("PRODUCT_PRICE", product.price)
+        orderItemsRepository =
+            OrderItemRepository(orderItemDao, Executors.newSingleThreadExecutor())
 
-                startActivity(intent)
-            }
+        adapter = ListProductsAdapter(
+            this,
+            ArrayList(),
+            object : ListProductsAdapter.OnProductClickListener {
+                override fun onProductClick(product: Product) {
+                    val intent =
+                        Intent(this@ListProductsActivity, ProductDetailActivity::class.java)
+                    intent.putExtra("PRODUCT_ID", product.id)
+                    intent.putExtra("PRODUCT_NAME", product.name)
+                    intent.putExtra("PRODUCT_IMAGE", product.image)
+                    intent.putExtra("PRODUCT_PRICE", product.price)
 
-            override fun onAddProductClick(product: Product) {
-                Toast.makeText(applicationContext, product.price.toString(), Toast.LENGTH_SHORT).show()
-            }
+                    startActivity(intent)
+                }
+            })
+        recyclerView?.adapter = adapter
 
-            override fun onProductImageClick(product: Product) {
-                Toast.makeText(applicationContext, product.sku, Toast.LENGTH_SHORT).show()
-            }
-        })
-        recyclerView!!.adapter = adapter
-
-        presenter!!.loadProducts()
+        presenter?.loadProducts()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -66,13 +71,10 @@ class ListProductsActivity : AppCompatActivity(), ListProductsContract.View {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         val id = item.itemId
 
         if (id == R.id.shopping_cart) {
-            Toast.makeText(this@ListProductsActivity, "Action clicked", Toast.LENGTH_LONG).show()
+            startActivity(Intent(applicationContext, CartActivity::class.java))
             return true
         }
 

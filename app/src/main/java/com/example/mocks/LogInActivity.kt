@@ -1,13 +1,10 @@
-package com.example.SingIn
+package com.example.mocks
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
 import com.example.animestore.R
 import com.example.presentation.listProducts.ListProductsActivity
-import kotlinx.android.synthetic.main.activity_buttoms.*
 import kotlinx.android.synthetic.main.activity_log_in.*
 
 class LogInActivity : AppCompatActivity() {

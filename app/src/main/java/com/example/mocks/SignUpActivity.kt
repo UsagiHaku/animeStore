@@ -1,6 +1,6 @@
-package com.example.SingIn
+package com.example.mocks
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.animestore.R
 

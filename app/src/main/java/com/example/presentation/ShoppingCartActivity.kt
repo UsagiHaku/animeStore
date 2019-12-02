@@ -1,7 +1,7 @@
 package com.example.presentation
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.example.animestore.R
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.shopping_car.*
@@ -17,7 +17,7 @@ class ShoppingCartActivity: AppCompatActivity() {
 
         Picasso.with(applicationContext)
             .load("https://images-na.ssl-images-amazon.com/images/I/81CVIiw%2BHgL._SX342_.jpg")
-            .into(imageView3)
+            .into(orderItemImage)
 
         subtotal.text = (productQuantity.text.toString().toInt() * price.text.toString().toFloat()).toString()
         totalNumber.text = subtotal.text

@@ -5,7 +5,7 @@ import com.example.domain.Product
 interface ProductDetailContract {
 
     interface View {
-        fun showProductDetail(products: Product)
+        fun showProductDetail(product: Product)
     }
 
     interface Presenter {

@@ -10,11 +10,11 @@
                   android:layout_height="wrap_content"
                   android:orientation="vertical">
 
-        <android.support.design.widget.AppBarLayout
+        <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-            <android.support.v7.widget.Toolbar
+            <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -22,9 +22,9 @@
                     android:background="?attr/colorPrimaryDark"
                     android:minHeight="?attr/actionBarSize"
                     android:theme="?attr/actionBarTheme" />
-        </android.support.design.widget.AppBarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -42,12 +42,12 @@
                 <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" app:srcCompat="@drawable/ic_shopping_cart"
-                        android:id="@+id/imageView3"/>
+                        android:id="@+id/orderItemImage"/>
             </LinearLayout>
             <TextView
                     android:text="Nombre de Producto"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content" android:id="@+id/textView6"
+                    android:layout_height="wrap_content" android:id="@+id/orderItemName"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginEnd="16dp" app:layout_constraintStart_toEndOf="@+id/linearLayout2"
                     android:layout_marginStart="16dp"
@@ -55,9 +55,9 @@
             <TextView
                     android:text="Cantidad"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content" android:id="@+id/textView8"
+                    android:layout_height="wrap_content" android:id="@+id/orderItemPrice"
                     android:layout_marginTop="8dp"
-                    app:layout_constraintTop_toBottomOf="@+id/textView6" android:textColor="@color/colorAccent"
+                    app:layout_constraintTop_toBottomOf="@+id/orderItemName" android:textColor="@color/colorAccent"
                     app:layout_constraintStart_toEndOf="@+id/linearLayout2" android:layout_marginStart="16dp"
                     android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"/>
             <EditText
@@ -66,7 +66,7 @@
                     android:inputType="numberSigned"
                     android:ems="10"
                     android:id="@+id/productQuantity" android:layout_marginTop="8dp"
-                    app:layout_constraintTop_toBottomOf="@+id/textView8" android:textSize="14sp"
+                    app:layout_constraintTop_toBottomOf="@+id/orderItemPrice" android:textSize="14sp"
                     app:layout_constraintStart_toEndOf="@+id/linearLayout2" android:layout_marginStart="16dp"
                     android:text="1"/>
             <TextView
@@ -111,7 +111,7 @@
                     android:layout_width="0dp"
                     android:layout_height="35dp"
                     android:background="@drawable/orange_buttom"
-                    android:id="@+id/button2" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
+                    android:id="@+id/remoteOrderItemButton" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
                     app:layout_constraintStart_toEndOf="@+id/linearLayout2" android:layout_marginStart="16dp"
                     app:layout_constraintBottom_toBottomOf="@+id/linearLayout2" android:textColor="@color/white"/>
             <TextView
@@ -139,6 +139,6 @@
                     app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginEnd="24dp" android:layout_marginTop="16dp"
                     app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="16dp"/>
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 </ScrollView>
