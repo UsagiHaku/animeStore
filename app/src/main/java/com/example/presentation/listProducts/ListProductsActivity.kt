@@ -4,22 +4,19 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.animestore.R
 import com.example.data.AnimeStoreDatabase
 import com.example.data.OrderItemRepository
-import com.example.domain.OrderItem
 import com.example.domain.Product
 import com.example.presentation.cart.CartActivity
 import com.example.presentation.productDetail.ProductDetailActivity
+import com.example.toolbar.ToolbarBuilder
 import java.util.concurrent.Executors
 
 
 class ListProductsActivity : AppCompatActivity(), ListProductsContract.View {
-    private var toolbar: Toolbar? = null
     private var recyclerView: androidx.recyclerview.widget.RecyclerView? = null
     private var adapter: ListProductsAdapter? = null
     private var presenter: ListProductsContract.Presenter? = null
@@ -32,8 +29,7 @@ class ListProductsActivity : AppCompatActivity(), ListProductsContract.View {
 
         presenter = ListProductsPresenter(this)
 
-        toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
+        ToolbarBuilder(this)
 
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView?.layoutManager = LinearLayoutManager(this)

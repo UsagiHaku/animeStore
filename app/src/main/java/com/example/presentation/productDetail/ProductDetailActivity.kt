@@ -2,17 +2,18 @@ package com.example.presentation.productDetail
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.animestore.R
 import com.example.data.AnimeStoreDatabase
 import com.example.data.OrderItemRepository
 import com.example.domain.OrderItem
 import com.example.domain.Product
-import com.example.presentation.ShoppingCartActivity
 import com.example.presentation.cart.CartActivity
+import com.example.toolbar.ToolbarBuilder
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.product_detail.*
 import java.util.concurrent.Executors
@@ -29,6 +30,8 @@ class ProductDetailActivity : AppCompatActivity(), ProductDetailContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.product_detail)
+
+        ToolbarBuilder(this)
 
         productName = findViewById(R.id.productName)
         productImage = findViewById(R.id.productImage)
@@ -79,5 +82,23 @@ class ProductDetailActivity : AppCompatActivity(), ProductDetailContract.View {
         Picasso.with(applicationContext)
             .load("https://images-na.ssl-images-amazon.com/images/I/81CVIiw%2BHgL._SX342_.jpg")
             .into(productImage)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+
+        if (id == R.id.shopping_cart) {
+            startActivity(Intent(applicationContext, CartActivity::class.java))
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 }

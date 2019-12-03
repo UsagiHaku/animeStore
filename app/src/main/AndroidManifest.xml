@@ -11,14 +11,14 @@
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
         <activity android:name="com.example.mocks.SignUpActivity"/>
-        <activity android:name="com.example.mocks.LogInActivity">
+        <activity android:name="com.example.mocks.LogInActivity"/>
+        <activity android:name="com.example.presentation.listProducts.ListProductsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="com.example.presentation.listProducts.ListProductsActivity"/>
         <activity android:name="com.example.presentation.productDetail.ProductDetailActivity"/>
         <activity android:name="com.example.presentation.ShoppingCartActivity"/>
         <activity android:name="com.example.presentation.cart.CartActivity" />

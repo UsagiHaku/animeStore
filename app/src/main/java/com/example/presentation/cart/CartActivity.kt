@@ -1,6 +1,7 @@
 package com.example.presentation.cart
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,12 +10,12 @@ import com.example.data.AnimeStoreDatabase
 import com.example.data.OrderItemRepository
 import com.example.domain.OrderItem
 import com.example.presentation.cart.ListCartAdapter.OnOrderItemClickListener
+import com.example.toolbar.ToolbarBuilder
 import kotlinx.android.synthetic.main.cart_layout.*
 import java.util.concurrent.Executors
 
 class CartActivity : AppCompatActivity() {
 
-    private var toolbar: Toolbar? = null
     private var recyclerView: androidx.recyclerview.widget.RecyclerView? = null
     private var adapter: ListCartAdapter? = null
 
@@ -24,10 +25,9 @@ class CartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.cart_layout)
 
-        toolbar = findViewById(R.id.toolbar)
         recyclerView = findViewById(R.id.recyclerView)
 
-        setSupportActionBar(toolbar)
+        ToolbarBuilder(this)
 
         recyclerView?.layoutManager = LinearLayoutManager(this)
 
@@ -41,7 +41,7 @@ class CartActivity : AppCompatActivity() {
             OrderItemRepository(orderItemDao, Executors.newSingleThreadExecutor())
 
         orderItemsRepository.getAllOrderItems {
-            adapter?.addItems(it)
+            updateCartState(it)
         }
 
         buyButton.setOnClickListener {
@@ -51,11 +51,22 @@ class CartActivity : AppCompatActivity() {
                 addOrderItem(orderItem) {
                     getAllOrderItems {
                         runOnUiThread {
-                            updateCart(it)
+                            updateCartState(it)
                         }
                     }
                 }
             }
+        }
+    }
+
+    private fun updateCartState(orderItems: List<OrderItem>) {
+        if(orderItems.isEmpty()) {
+            cartContent.visibility = View.GONE
+            cartEmpty.visibility = View.VISIBLE
+        } else {
+            cartContent.visibility = View.VISIBLE
+            cartEmpty.visibility = View.GONE
+            adapter?.replaceItems(orderItems)
         }
     }
 
@@ -69,7 +80,7 @@ class CartActivity : AppCompatActivity() {
                 removeOrderItem(orderItem) {
                     getAllOrderItems {
                         runOnUiThread {
-                            updateCart(it)
+                            updateCartState(it)
                         }
                     }
                 }

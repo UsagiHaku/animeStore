@@ -20,12 +20,25 @@
                 android:layout_weight="1"
                 android:background="?attr/colorPrimaryDark"
                 android:minHeight="?attr/actionBarSize"
-                android:theme="?attr/actionBarTheme" />
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Carrito de Compras"
+                    android:textSize="18sp"
+                    android:layout_gravity="center"
+                    android:id="@+id/toolbar_title" />
+
+        </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
+            android:id="@+id/cartContent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            tools:visibility="gone">
 
         <LinearLayout
                 android:id="@+id/drawer_layout"
@@ -36,30 +49,63 @@
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     tools:itemCount="3"
-                    tools:listitem="@layout/order_item_row"
-                    android:layout_height="wrap_content">
-            </androidx.recyclerview.widget.RecyclerView>
+                    tools:listitem="@layout/order_item_row"></androidx.recyclerview.widget.RecyclerView>
 
             <TextView
-                    android:text="Total: $"
+                    android:id="@+id/textView15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
-                    android:id="@+id/textView15" android:layout_marginTop="16dp"
-                    android:textColor="@color/colorAccent"/>
+                    android:layout_marginTop="16dp"
+                    android:text="Total: $"
+                    android:textColor="@color/colorAccent" />
 
             <androidx.appcompat.widget.AppCompatButton
-                    android:text="Comprar Ahora"
+                    android:id="@+id/buyButton"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:textColor="@color/white"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="16dp"
                     android:background="@drawable/blue_buttom"
-                    android:id="@+id/buyButton" android:layout_marginStart="24dp"
-                    android:layout_marginEnd="24dp" android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"/>
+                    android:text="Comprar Ahora"
+                    android:textColor="@color/white" />
         </LinearLayout>
 
     </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cartEmpty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:tint="@color/black"
+                app:srcCompat="@drawable/ic_shopping_cart" />
+
+        <TextView
+                android:id="@+id/emptyCartText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="El carrito esta vacio"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </LinearLayout>
