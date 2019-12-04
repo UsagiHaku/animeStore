@@ -51,7 +51,7 @@
                     app:layout_constraintStart_toStartOf="parent">
 
                 <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/textInputLayout"
+                        android:id="@+id/cardNumber"
                         style="@style/AnimeStoreTextInputLayoutStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -68,6 +68,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:maxLength="16"
                             android:inputType="numberSigned" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -80,7 +81,7 @@
                         app:layout_constraintGuide_percent="0.50" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/textInputLayout2"
+                        android:id="@+id/mmaaNumber"
                         style="@style/AnimeStoreTextInputLayoutStyle"
                         app:boxBackgroundColor="@color/white"
                         android:layout_width="0dp"
@@ -92,18 +93,19 @@
                         app:errorEnabled="true"
                         app:layout_constraintEnd_toStartOf="@+id/guideline"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+                        app:layout_constraintTop_toBottomOf="@+id/cardNumber">
 
                     <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@color/white"
-                            android:inputType="textPassword" />
+                            android:maxLength="4"
+                            android:inputType="numberSigned" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/textInputLayout5"
+                        android:id="@+id/cvcNumber"
                         style="@style/AnimeStoreTextInputLayoutStyle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -114,12 +116,13 @@
                         app:errorEnabled="true"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/guideline"
-                        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+                        app:layout_constraintTop_toBottomOf="@+id/cardNumber">
 
                     <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="textPassword" />
+                            android:maxLength="3"
+                            android:inputType="numberSigned" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -135,12 +138,13 @@
                         app:errorEnabled="true"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
+                        app:layout_constraintTop_toBottomOf="@+id/mmaaNumber">
 
                     <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="textPassword" />
+                            android:maxLength="50"
+                            android:inputType="textPersonName" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 

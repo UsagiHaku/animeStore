@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.animestore.R
@@ -50,12 +51,15 @@ class ListProductsAdapter(
         private val productName: TextView = itemView.findViewById(R.id.productName)
         private val productPrice: TextView = itemView.findViewById(R.id.productPrice)
         private val productImage: ImageView = itemView.findViewById(R.id.serieImage)
+        private val productRating: RatingBar = itemView.findViewById(R.id.packageRating)
 
         fun setDetails(product: Product, listener: OnProductClickListener) {
             productName.text = product.name
             productPrice.text = product.price.formatToMxn()
+            productRating.rating = product.rating ?: 0f
             Picasso.with(context)
                 .load(product.image)
+                .resize(400, 0)
                 .into(productImage)
             itemView.setOnClickListener {
                 listener.onProductClick(product)

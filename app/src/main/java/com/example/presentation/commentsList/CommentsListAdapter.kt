@@ -37,12 +37,10 @@ class CommentsListAdapter(
 
     inner class ListCommentsItemHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val username: TextView = view.findViewById(R.id.username)
-        private val ratingBar: RatingBar = view.findViewById(R.id.ratingBar)
         private val description: TextView = view.findViewById(R.id.description)
 
         fun setData(item: Comment) {
             username.text = item.username ?: context.getString(R.string.no_title)
-            ratingBar.rating = item.rating?.toFloat() ?: 0.0f
             description.text = item.description
         }
 

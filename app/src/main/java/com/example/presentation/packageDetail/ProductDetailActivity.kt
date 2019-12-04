@@ -24,13 +24,13 @@ import com.example.presentation.listProducts.ListProductsActivity
 import com.example.presentation.seriesList.SeriesListActivity
 import com.example.toolbar.ToolbarBuilder
 import com.example.utils.resetStack
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.product_detail.*
 import kotlinx.android.synthetic.main.product_detail.descriptionText
 import kotlinx.android.synthetic.main.product_detail.packageComments
-import kotlinx.android.synthetic.main.serie_detail.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -68,6 +68,7 @@ class ProductDetailActivity : AppCompatActivity(), ProductDetailContract.View {
             name = intent.getStringExtra("PRODUCT_NAME"),
             price = intent.getDoubleExtra("PRODUCT_PRICE", 0.0),
             image = intent.getStringExtra("PRODUCT_IMAGE"),
+            rating = intent.getFloatExtra("PRODUCT_RATING", 0f),
             description = intent.getStringExtra("PRODUCT_DESCRIPTION")
         )
 
@@ -82,8 +83,13 @@ class ProductDetailActivity : AppCompatActivity(), ProductDetailContract.View {
             val orderItem = OrderItem(product.id, product.price, name = product.name)
             orderItemsRepository.apply {
                 addOrderItem(orderItem) {
-                    val intent = Intent(applicationContext, CartActivity::class.java)
-                    startActivity(intent)
+                    runOnUiThread {
+                        productName?.rootView?.let {
+                            Snackbar.make(it, "Producto agregado exitosamente", Snackbar.LENGTH_SHORT)
+                                .show()
+                        }
+
+                    }
                 }
             }
         }
@@ -118,6 +124,8 @@ class ProductDetailActivity : AppCompatActivity(), ProductDetailContract.View {
         productName?.text = name
         price?.text = product.price.toString()
         descriptionText?.text = product.description
+
+        packageRating?.rating = product.rating ?: 0f
 
         Picasso.with(applicationContext)
             .load(image)

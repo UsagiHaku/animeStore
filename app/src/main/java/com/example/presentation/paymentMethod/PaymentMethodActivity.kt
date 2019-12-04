@@ -18,7 +18,36 @@ class PaymentMethodActivity: AppCompatActivity() {
         ToolbarBuilder(this, false)
 
         finishProcess?.setOnClickListener {
-            startActivity(Intent(applicationContext, ConfirmOrderActivity::class.java))
+            cardNumber.isErrorEnabled = false
+            mmaaNumber.isErrorEnabled = false
+            cvcNumber.isErrorEnabled = false
+            cardName.isErrorEnabled = false
+
+            var isValidForm = true
+
+            if(cardNumber.editText?.text?.trim()?.isEmpty() == true) {
+                cardNumber.error = "Un campo esta incompleto"
+                isValidForm = false
+            }
+
+            if(mmaaNumber.editText?.text?.trim()?.isEmpty() == true) {
+                mmaaNumber.error = "Un campo esta incompleto"
+                isValidForm = false
+            }
+
+            if(cvcNumber.editText?.text?.trim()?.isEmpty() == true) {
+                cvcNumber.error = "Un campo esta incompleto"
+                isValidForm = false
+            }
+
+            if(cardName.editText?.text?.trim()?.isEmpty() == true) {
+                cardName.error = "Un campo esta incompleto"
+                isValidForm = false
+            }
+
+            if(isValidForm) {
+                startActivity(Intent(applicationContext, ConfirmOrderActivity::class.java))
+            }
         }
 
         cancelProcess?.setOnClickListener {

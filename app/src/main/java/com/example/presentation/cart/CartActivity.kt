@@ -72,7 +72,9 @@ class CartActivity : AppCompatActivity() {
             cartEmpty.visibility = View.GONE
             adapter?.replaceItems(orderItems)
 
-            totalText.text = orderItems.total().formatToMxn()
+            val totalLabel = "Total: ${orderItems.total().formatToMxn()}"
+
+            totalText.text = totalLabel
         }
     }
 

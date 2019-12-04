@@ -49,6 +49,7 @@ class ListProductsActivity : AppCompatActivity(), ListProductsContract.View {
                     intent.putExtra("PRODUCT_IMAGE", product.image)
                     intent.putExtra("PRODUCT_PRICE", product.price)
                     intent.putExtra("PRODUCT_DESCRIPTION", product.description)
+                    intent.putExtra("PRODUCT_RATING", product.rating)
 
                     startActivity(intent)
                 }

@@ -8,6 +8,7 @@ class Product(
     var image: String? = null,
     var name: String? = null,
     var price: Double,
+    var rating: Float? = null,
     var description: String? = null,
     var comments: List<Comment>? = arrayListOf()
 )

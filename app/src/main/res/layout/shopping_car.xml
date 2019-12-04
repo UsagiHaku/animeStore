@@ -37,7 +37,7 @@
                     app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="24dp"
                     android:layout_marginStart="24dp"
                     android:gravity="center"
-                    android:id="@+id/linearLayout2">
+                    android:id="@+id/imageContainer">
 
                 <ImageView
                         android:layout_width="wrap_content"
@@ -49,16 +49,16 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content" android:id="@+id/orderItemName"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginEnd="16dp" app:layout_constraintStart_toEndOf="@+id/linearLayout2"
+                    android:layout_marginEnd="16dp" app:layout_constraintStart_toEndOf="@+id/imageContainer"
                     android:layout_marginStart="16dp"
-                    app:layout_constraintTop_toTopOf="@+id/linearLayout2"/>
+                    app:layout_constraintTop_toTopOf="@+id/imageContainer"/>
             <TextView
                     android:text="Cantidad"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content" android:id="@+id/orderItemPrice"
                     android:layout_marginTop="8dp"
                     app:layout_constraintTop_toBottomOf="@+id/orderItemName" android:textColor="@color/colorAccent"
-                    app:layout_constraintStart_toEndOf="@+id/linearLayout2" android:layout_marginStart="16dp"
+                    app:layout_constraintStart_toEndOf="@+id/imageContainer" android:layout_marginStart="16dp"
                     android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"/>
             <EditText
                     android:layout_width="30dp"
@@ -67,7 +67,7 @@
                     android:ems="10"
                     android:id="@+id/productQuantity" android:layout_marginTop="8dp"
                     app:layout_constraintTop_toBottomOf="@+id/orderItemPrice" android:textSize="14sp"
-                    app:layout_constraintStart_toEndOf="@+id/linearLayout2" android:layout_marginStart="16dp"
+                    app:layout_constraintStart_toEndOf="@+id/imageContainer" android:layout_marginStart="16dp"
                     android:text="1"/>
             <TextView
                     android:text="x $"
@@ -112,14 +112,14 @@
                     android:layout_height="35dp"
                     android:background="@drawable/orange_buttom"
                     android:id="@+id/remoteOrderItemButton" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
-                    app:layout_constraintStart_toEndOf="@+id/linearLayout2" android:layout_marginStart="16dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/linearLayout2" android:textColor="@color/white"/>
+                    app:layout_constraintStart_toEndOf="@+id/imageContainer" android:layout_marginStart="16dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageContainer" android:textColor="@color/white"/>
             <TextView
                     android:text="total "
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/totalNumber" android:layout_marginTop="16dp"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2" android:textColor="@color/colorAccent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageContainer" android:textColor="@color/colorAccent"
                     app:layout_constraintStart_toEndOf="@+id/totalText" android:layout_marginStart="2dp"/>
             <TextView
                     android:text="Total: $"
@@ -127,7 +127,7 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="24dp"
                     android:id="@+id/totalText" android:layout_marginTop="16dp"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2" android:textColor="@color/colorAccent"/>
+                    app:layout_constraintTop_toBottomOf="@+id/imageContainer" android:textColor="@color/colorAccent"/>
             <Button
                     android:text="Comprar Ahora"
                     android:layout_width="0dp"
