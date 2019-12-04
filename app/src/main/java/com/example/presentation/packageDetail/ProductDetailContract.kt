@@ -1,4 +1,4 @@
-package com.example.presentation.productDetail
+package com.example.presentation.packageDetail
 
 import com.example.domain.Product
 

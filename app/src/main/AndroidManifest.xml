@@ -19,13 +19,15 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="com.example.presentation.productDetail.ProductDetailActivity"/>
+        <activity android:name="com.example.presentation.packageDetail.ProductDetailActivity"/>
         <activity android:name="com.example.presentation.ShoppingCartActivity"/>
         <activity android:name="com.example.presentation.cart.CartActivity" />
         <activity android:name="com.example.presentation.paymentMethod.PaymentMethodActivity" />
         <activity android:name="com.example.presentation.confirmOrder.ConfirmOrderActivity" />
         <activity android:name="com.example.presentation.confirmOrder.SuccessPaymentActivity" />
         <activity android:name="com.example.presentation.accessActivity.AccessActivity" />
+        <activity android:name="com.example.presentation.seriesList.SeriesListActivity" />
+        <activity android:name="com.example.presentation.serieDetail.SerieDetailActivity" />
     </application>
 
 </manifest>

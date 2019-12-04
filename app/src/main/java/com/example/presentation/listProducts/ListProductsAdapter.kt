@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.animestore.R
 import com.example.domain.Product
+import com.example.utils.formatToMxn
 import com.squareup.picasso.Picasso
 import java.util.*
 
@@ -48,20 +49,18 @@ class ListProductsAdapter(
 
         private val productName: TextView = itemView.findViewById(R.id.productName)
         private val productPrice: TextView = itemView.findViewById(R.id.productPrice)
-        private val productImage: ImageView = itemView.findViewById(R.id.productImage)
+        private val productImage: ImageView = itemView.findViewById(R.id.serieImage)
 
         fun setDetails(product: Product, listener: OnProductClickListener) {
             productName.text = product.name
-            productPrice.text = product.price.toString()
+            productPrice.text = product.price.formatToMxn()
             Picasso.with(context)
-                .load("https://images-na.ssl-images-amazon.com/images/I/81CVIiw%2BHgL._SX342_.jpg")
+                .load(product.image)
                 .into(productImage)
             itemView.setOnClickListener {
                 listener.onProductClick(product)
             }
         }
-
-
     }
 
 

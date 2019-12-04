@@ -28,7 +28,9 @@ class ListProductsPresenter(private val view: ListProductsContract.View) : ListP
         call.enqueue(object : Callback<List<Product>> {
             override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>) {
                 when (response.code()) {
-                    200 -> response.body()?.let { view.showProducts(it) }
+                    200 -> response.body()?.let {
+                        view.showProducts(it)
+                    }
                     401 -> {
                     }
                     else -> {

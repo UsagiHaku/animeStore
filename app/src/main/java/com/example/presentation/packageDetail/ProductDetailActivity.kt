@@ -1,4 +1,4 @@
-package com.example.presentation.productDetail
+package com.example.presentation.packageDetail
 
 import android.content.Intent
 import android.os.Bundle
@@ -16,9 +16,9 @@ import com.example.domain.Product
 import com.example.mocks.LogInActivity
 import com.example.presentation.cart.CartActivity
 import com.example.presentation.listProducts.ListProductsActivity
+import com.example.presentation.seriesList.SeriesListActivity
 import com.example.toolbar.ToolbarBuilder
 import com.example.utils.resetStack
-import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.product_detail.*
 import java.util.concurrent.Executors
@@ -27,6 +27,7 @@ class ProductDetailActivity : AppCompatActivity(), ProductDetailContract.View {
 
     private var productName: TextView? = null
     private var productImage: ImageView? = null
+    private var productDescription: TextView? = null
 
     private lateinit var product: Product
 
@@ -42,14 +43,15 @@ class ProductDetailActivity : AppCompatActivity(), ProductDetailContract.View {
         sessionManager = SessionManager(this)
 
         productName = findViewById(R.id.productName)
-        productImage = findViewById(R.id.productImage)
-        productName?.setOnClickListener { }
+        productImage = findViewById(R.id.serieImage)
+        productDescription = findViewById(R.id.descriptionText)
 
         product = Product(
             id = intent.getIntExtra("PRODUCT_ID", 0),
             name = intent.getStringExtra("PRODUCT_NAME"),
             price = intent.getDoubleExtra("PRODUCT_PRICE", 0.0),
-            image = intent.getStringExtra("PRODUCT_IMAGE")
+            image = intent.getStringExtra("PRODUCT_IMAGE"),
+            description = intent.getStringExtra("PRODUCT_DESCRIPTION")
         )
 
         showProductDetail(product)
@@ -70,13 +72,24 @@ class ProductDetailActivity : AppCompatActivity(), ProductDetailContract.View {
         }
 
         buyNow?.setOnClickListener {
-            val orderItem = OrderItem(product.id, product.price, name = product.name)
+            val orderItem = OrderItem(
+                product.id,
+                product.price,
+                name = product.name,
+                image = product.image
+            )
             orderItemsRepository.apply {
                 addOrderItem(orderItem) {
                     val intent = Intent(applicationContext, CartActivity::class.java)
                     startActivity(intent)
                 }
             }
+        }
+
+        seriesListButton?.setOnClickListener {
+            val intent = Intent(applicationContext, SeriesListActivity::class.java)
+                .putExtra("packageId", product.id)
+            startActivity(intent)
         }
 
     }
@@ -87,8 +100,10 @@ class ProductDetailActivity : AppCompatActivity(), ProductDetailContract.View {
 
         productName?.text = name
         price?.text = product.price.toString()
+        descriptionText?.text = product.description
+
         Picasso.with(applicationContext)
-            .load("https://images-na.ssl-images-amazon.com/images/I/81CVIiw%2BHgL._SX342_.jpg")
+            .load(image)
             .into(productImage)
     }
 

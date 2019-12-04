@@ -12,10 +12,9 @@ import com.example.data.SessionManager
 import com.example.domain.Product
 import com.example.mocks.LogInActivity
 import com.example.presentation.cart.CartActivity
-import com.example.presentation.productDetail.ProductDetailActivity
+import com.example.presentation.packageDetail.ProductDetailActivity
 import com.example.toolbar.ToolbarBuilder
 import com.example.utils.resetStack
-import com.google.android.material.snackbar.Snackbar
 
 
 class ListProductsActivity : AppCompatActivity(), ListProductsContract.View {
@@ -49,6 +48,7 @@ class ListProductsActivity : AppCompatActivity(), ListProductsContract.View {
                     intent.putExtra("PRODUCT_NAME", product.name)
                     intent.putExtra("PRODUCT_IMAGE", product.image)
                     intent.putExtra("PRODUCT_PRICE", product.price)
+                    intent.putExtra("PRODUCT_DESCRIPTION", product.description)
 
                     startActivity(intent)
                 }

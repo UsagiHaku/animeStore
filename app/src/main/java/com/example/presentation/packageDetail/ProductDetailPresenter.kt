@@ -1,10 +1,9 @@
-package com.example.presentation.productDetail
+package com.example.presentation.packageDetail
 
 
 import com.example.data.RestClient
 import com.example.domain.Product
 import com.google.gson.FieldNamingPolicy
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import retrofit2.Call
 import retrofit2.Callback
