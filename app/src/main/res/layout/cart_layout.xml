@@ -37,8 +37,7 @@
     <ScrollView
             android:id="@+id/cartContent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:visibility="gone">
+            android:layout_height="wrap_content">
 
         <LinearLayout
                 android:id="@+id/drawer_layout"
@@ -51,10 +50,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:itemCount="3"
-                    tools:listitem="@layout/order_item_row"></androidx.recyclerview.widget.RecyclerView>
+                    tools:listitem="@layout/order_item_row" />
 
             <TextView
-                    android:id="@+id/textView15"
+                    android:id="@+id/totalText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
@@ -80,7 +79,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cartEmpty"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:visibility="gone">
 
         <ImageView
                 android:id="@+id/imageView3"

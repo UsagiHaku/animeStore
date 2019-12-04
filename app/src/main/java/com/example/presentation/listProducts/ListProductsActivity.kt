@@ -6,22 +6,18 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.animestore.R
-import com.example.data.AnimeStoreDatabase
-import com.example.data.OrderItemRepository
 import com.example.domain.Product
 import com.example.presentation.cart.CartActivity
 import com.example.presentation.productDetail.ProductDetailActivity
 import com.example.toolbar.ToolbarBuilder
-import java.util.concurrent.Executors
 
 
 class ListProductsActivity : AppCompatActivity(), ListProductsContract.View {
-    private var recyclerView: androidx.recyclerview.widget.RecyclerView? = null
+    private var recyclerView: RecyclerView? = null
     private var adapter: ListProductsAdapter? = null
     private var presenter: ListProductsContract.Presenter? = null
-
-    private lateinit var orderItemsRepository: OrderItemRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,11 +29,6 @@ class ListProductsActivity : AppCompatActivity(), ListProductsContract.View {
 
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView?.layoutManager = LinearLayoutManager(this)
-
-        val orderItemDao = AnimeStoreDatabase.getDatabase(application).orderItemDao()
-
-        orderItemsRepository =
-            OrderItemRepository(orderItemDao, Executors.newSingleThreadExecutor())
 
         adapter = ListProductsAdapter(
             this,

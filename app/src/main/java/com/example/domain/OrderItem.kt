@@ -16,3 +16,14 @@ data class OrderItem(
             return price * quantity
         }
 }
+
+
+fun List<OrderItem>.total(): Double {
+    var total = 0.0
+
+    forEach {
+        total += it.price
+    }
+
+    return total
+}

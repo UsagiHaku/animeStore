@@ -120,13 +120,13 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/totalNumber" android:layout_marginTop="16dp"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout2" android:textColor="@color/colorAccent"
-                    app:layout_constraintStart_toEndOf="@+id/textView15" android:layout_marginStart="2dp"/>
+                    app:layout_constraintStart_toEndOf="@+id/totalText" android:layout_marginStart="2dp"/>
             <TextView
                     android:text="Total: $"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="24dp"
-                    android:id="@+id/textView15" android:layout_marginTop="16dp"
+                    android:id="@+id/totalText" android:layout_marginTop="16dp"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout2" android:textColor="@color/colorAccent"/>
             <Button
                     android:text="Comprar Ahora"
@@ -135,7 +135,7 @@
                     android:textColor="@color/white"
                     android:background="@drawable/blue_buttom"
                     android:id="@+id/buyButton" android:layout_marginStart="24dp"
-                    app:layout_constraintTop_toBottomOf="@+id/textView15"
+                    app:layout_constraintTop_toBottomOf="@+id/totalText"
                     app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginEnd="24dp" android:layout_marginTop="16dp"
                     app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="16dp"/>

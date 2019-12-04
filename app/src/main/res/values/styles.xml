@@ -10,4 +10,10 @@
 
     <style name="Toolbar" parent="Base.ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
+    <style name="AnimeStoreTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxBackgroundColor">@color/white</item>
+        <item name="boxStrokeColor">@color/colorAccent</item>
+        <item name="boxStrokeWidth">2dp</item>
+    </style>
+
 </resources>

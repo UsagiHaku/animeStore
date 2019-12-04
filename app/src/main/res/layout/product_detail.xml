@@ -111,7 +111,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/guideline"
                         android:orientation="vertical"
-                        app:layout_constraintGuide_percent="0.50121653"/>
+                        app:layout_constraintGuide_percent="0.50"/>
                 <Button
                         android:text="@string/product_details"
                         android:textColor="@color/white"
