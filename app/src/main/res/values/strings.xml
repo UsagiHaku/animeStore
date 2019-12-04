@@ -3,7 +3,7 @@
     <string name="log_in"> Iniciar sesión </string>
     <string name="sign_up"> Registrarse </string>
     <string name="password"> Contraseña </string>
-    <string name="new_user"> ¿Eres nuevo? : Regístrate </string>
+    <string name="new_user"> ¿Eres nuevo? Regístrate </string>
     <string name="email"> Correo electrónico </string>
     <string name="user_name"> Nombre del usuario </string>
     <string name="enter_user_data"> Ingreses sus datos aquí </string>
