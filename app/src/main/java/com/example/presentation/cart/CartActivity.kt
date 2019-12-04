@@ -52,6 +52,8 @@ class CartActivity : AppCompatActivity() {
             intent.putExtra("redirectToScreen", "payment")
             startActivity(intent)
         }
+
+
     }
 
     private fun updateCartState(orderItems: List<OrderItem>) {

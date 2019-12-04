@@ -1,5 +1,6 @@
 package com.example.presentation.confirmOrder
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,6 +10,7 @@ import com.example.data.AnimeStoreDatabase
 import com.example.data.OrderItemRepository
 import com.example.domain.OrderItem
 import com.example.domain.total
+import com.example.presentation.listProducts.ListProductsActivity
 import com.example.toolbar.ToolbarBuilder
 import com.example.utils.formatToMxn
 import kotlinx.android.synthetic.main.confirm_order_layout.*
@@ -41,6 +43,14 @@ class ConfirmOrderActivity: AppCompatActivity() {
 
         orderItemsRepository.getAllOrderItems {
             updateProductReviewList(it)
+        }
+
+        finishProcess?.setOnClickListener {
+            orderItemsRepository.removeAll {
+                val intent = Intent(applicationContext, SuccessPaymentActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+            }
         }
     }
 

@@ -27,4 +27,11 @@ class OrderItemRepository(
             onSuccess()
         }
     }
+
+    fun removeAll(onSuccess: () -> Unit) {
+        executor.execute {
+            orderItemDao.removeAll()
+            onSuccess()
+        }
+    }
 }

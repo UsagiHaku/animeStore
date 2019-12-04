@@ -15,7 +15,7 @@ interface OrderItemDao {
     fun insert(orderItem: OrderItem): Long
 
     @Query("DELETE FROM order_items_table")
-    fun deleteAll()
+    fun removeAll()
 
     @Delete
     fun removeOrderItems(vararg orderItems: OrderItem)

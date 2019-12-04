@@ -15,7 +15,7 @@ class PaymentMethodActivity: AppCompatActivity() {
 
         ToolbarBuilder(this)
 
-        continueProcess?.setOnClickListener {
+        finishProcess?.setOnClickListener {
             startActivity(Intent(applicationContext, ConfirmOrderActivity::class.java))
 
         }

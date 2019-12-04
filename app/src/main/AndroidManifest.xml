@@ -24,6 +24,7 @@
         <activity android:name="com.example.presentation.cart.CartActivity" />
         <activity android:name="com.example.presentation.paymentMethod.PaymentMethodActivity" />
         <activity android:name="com.example.presentation.confirmOrder.ConfirmOrderActivity" />
+        <activity android:name="com.example.presentation.confirmOrder.SuccessPaymentActivity" />
     </application>
 
 </manifest>
