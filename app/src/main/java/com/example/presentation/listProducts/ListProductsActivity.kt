@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.animestore.R
 import com.example.data.SessionManager
 import com.example.domain.Product
+import com.example.mocks.LogInActivity
 import com.example.presentation.cart.CartActivity
 import com.example.presentation.productDetail.ProductDetailActivity
 import com.example.toolbar.ToolbarBuilder
@@ -85,6 +86,11 @@ class ListProductsActivity : AppCompatActivity(), ListProductsContract.View {
             startActivity(intent)
 
             return true
+        }
+
+        if(id == R.id.login) {
+            val intent = Intent(applicationContext, LogInActivity::class.java)
+            startActivity(intent)
         }
 
         return super.onOptionsItemSelected(item)

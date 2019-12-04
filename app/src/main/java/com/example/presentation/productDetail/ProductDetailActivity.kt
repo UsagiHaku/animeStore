@@ -13,6 +13,7 @@ import com.example.data.OrderItemRepository
 import com.example.data.SessionManager
 import com.example.domain.OrderItem
 import com.example.domain.Product
+import com.example.mocks.LogInActivity
 import com.example.presentation.cart.CartActivity
 import com.example.presentation.listProducts.ListProductsActivity
 import com.example.toolbar.ToolbarBuilder
@@ -118,6 +119,11 @@ class ProductDetailActivity : AppCompatActivity(), ProductDetailContract.View {
             startActivity(intent)
 
             return true
+        }
+
+        if(id == R.id.login) {
+            val intent = Intent(applicationContext, LogInActivity::class.java)
+            startActivity(intent)
         }
 
         return super.onOptionsItemSelected(item)

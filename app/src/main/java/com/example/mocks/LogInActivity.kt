@@ -10,6 +10,7 @@ import com.example.data.SessionManager
 import com.example.data.UserRepository
 import com.example.presentation.listProducts.ListProductsActivity
 import com.example.presentation.paymentMethod.PaymentMethodActivity
+import com.example.utils.resetStack
 import kotlinx.android.synthetic.main.activity_log_in.*
 import java.util.concurrent.Executors
 
@@ -33,7 +34,7 @@ class LogInActivity : AppCompatActivity() {
             Executors.newSingleThreadExecutor()
         )
 
-        signUp_message.setOnClickListener {
+        signUpButton.setOnClickListener {
             val intent = Intent(applicationContext, SignUpActivity::class.java)
                 .putExtra("redirectToScreen", "payment")
 
@@ -61,8 +62,10 @@ class LogInActivity : AppCompatActivity() {
     private fun buildIntent(): Intent {
         return if (redirectToScreen == "payment") {
             Intent(applicationContext, PaymentMethodActivity::class.java)
+                .resetStack()
         } else {
             Intent(applicationContext, ListProductsActivity::class.java)
+                .resetStack()
         }
     }
 

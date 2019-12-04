@@ -12,6 +12,7 @@ import com.example.data.SessionManager
 import com.example.domain.OrderItem
 import com.example.domain.total
 import com.example.mocks.LogInActivity
+import com.example.presentation.accessActivity.AccessActivity
 import com.example.presentation.cart.ListCartAdapter.OnOrderItemClickListener
 import com.example.presentation.paymentMethod.PaymentMethodActivity
 import com.example.toolbar.ToolbarBuilder
@@ -53,7 +54,7 @@ class CartActivity : AppCompatActivity() {
             val intent = if(sessionManager?.isLogged() == true) {
                 Intent(applicationContext, PaymentMethodActivity::class.java)
             } else {
-                Intent(applicationContext, LogInActivity::class.java)
+                Intent(applicationContext, AccessActivity::class.java)
                     .putExtra("redirectToScreen", "payment")
             }
             startActivity(intent)

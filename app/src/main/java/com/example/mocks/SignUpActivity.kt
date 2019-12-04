@@ -10,6 +10,7 @@ import com.example.data.UserRepository
 import com.example.domain.User
 import com.example.presentation.listProducts.ListProductsActivity
 import com.example.presentation.paymentMethod.PaymentMethodActivity
+import com.example.utils.resetStack
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import java.util.concurrent.Executors
 
@@ -64,8 +65,10 @@ class SignUpActivity : AppCompatActivity() {
     private fun buildIntent(): Intent {
         return if (redirectToScreen == "payment") {
             Intent(applicationContext, PaymentMethodActivity::class.java)
+                .resetStack()
         } else {
             Intent(applicationContext, ListProductsActivity::class.java)
+                .resetStack()
         }
     }
 }
