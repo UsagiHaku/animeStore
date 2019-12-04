@@ -1,5 +1,6 @@
 package com.example.data
 
+import com.example.domain.Comment
 import com.example.domain.Product
 import com.example.domain.Serie
 import retrofit2.Call
@@ -23,4 +24,7 @@ interface RestClient {
 
     @GET("series/{serie_id}")
     fun getSerie(@Path(value = "serie_id", encoded = true) serieId: String): Call<Serie>
+
+    @GET("products/{product_id}/comments")
+    fun getPackageComments(@Path(value = "product_id", encoded = true) productId: String): Call<List<Comment>>
 }

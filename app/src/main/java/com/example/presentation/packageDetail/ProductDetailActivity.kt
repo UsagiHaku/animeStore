@@ -7,20 +7,35 @@ import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.animestore.R
 import com.example.data.AnimeStoreDatabase
 import com.example.data.OrderItemRepository
+import com.example.data.RestClient
 import com.example.data.SessionManager
+import com.example.domain.Comment
 import com.example.domain.OrderItem
 import com.example.domain.Product
+import com.example.domain.Serie
 import com.example.mocks.LogInActivity
 import com.example.presentation.cart.CartActivity
+import com.example.presentation.commentsList.CommentsListAdapter
 import com.example.presentation.listProducts.ListProductsActivity
 import com.example.presentation.seriesList.SeriesListActivity
 import com.example.toolbar.ToolbarBuilder
 import com.example.utils.resetStack
+import com.google.gson.FieldNamingPolicy
+import com.google.gson.GsonBuilder
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.product_detail.*
+import kotlinx.android.synthetic.main.product_detail.descriptionText
+import kotlinx.android.synthetic.main.product_detail.packageComments
+import kotlinx.android.synthetic.main.serie_detail.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.Executors
 
 class ProductDetailActivity : AppCompatActivity(), ProductDetailContract.View {
@@ -28,6 +43,8 @@ class ProductDetailActivity : AppCompatActivity(), ProductDetailContract.View {
     private var productName: TextView? = null
     private var productImage: ImageView? = null
     private var productDescription: TextView? = null
+
+    private var commentAdapter: CommentsListAdapter? = null
 
     private lateinit var product: Product
 
@@ -105,6 +122,50 @@ class ProductDetailActivity : AppCompatActivity(), ProductDetailContract.View {
         Picasso.with(applicationContext)
             .load(image)
             .into(productImage)
+
+        packageComments?.layoutManager = LinearLayoutManager(this)
+        commentAdapter = CommentsListAdapter(this, arrayListOf())
+        packageComments?.adapter = commentAdapter
+
+        loadComments(product.id)
+    }
+
+    private fun loadComments(id: Int?) {
+        val gson = GsonBuilder()
+            .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+            .create()
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://sleepy-refuge-38259.herokuapp.com/")
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .build()
+
+        val restClient = retrofit.create<RestClient>(RestClient::class.java)
+
+        val call = restClient.getPackageComments(id.toString())
+
+        call.enqueue(object : Callback<List<Comment>> {
+            override fun onFailure(call: Call<List<Comment>>, t: Throwable) {
+
+            }
+
+            override fun onResponse(call: Call<List<Comment>>, response: Response<List<Comment>>) {
+                when (response.code()) {
+                    200 -> response.body()?.let {
+                        updateCommentSection(it)
+                    }
+                    401 -> {
+                    }
+                    else -> {
+                    }
+                }
+            }
+
+        })
+    }
+
+    private fun updateCommentSection(comments: List<Comment>) {
+        commentAdapter?.replaceItems(comments)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
