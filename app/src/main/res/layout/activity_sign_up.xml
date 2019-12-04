@@ -44,7 +44,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
             <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/nickname"
+                    android:id="@+id/nicknameField"
                     style="@style/AnimeStoreTextInputLayoutStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -60,12 +60,12 @@
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textEmailAddress" />
+                        android:inputType="textPersonName" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/email"
+                    android:id="@+id/emailField"
                     style="@style/AnimeStoreTextInputLayoutStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
                     app:errorEnabled="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/nickname">
+                    app:layout_constraintTop_toBottomOf="@id/nicknameField">
 
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
@@ -86,7 +86,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/password"
+                    android:id="@+id/passwordField"
                     style="@style/AnimeStoreTextInputLayoutStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -97,7 +97,7 @@
                     app:errorEnabled="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/email"
+                    app:layout_constraintTop_toBottomOf="@id/emailField"
                     app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -118,7 +118,7 @@
                     android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/password" />
+                    app:layout_constraintTop_toBottomOf="@+id/passwordField" />
 
             <TextView
                     android:layout_width="wrap_content"

@@ -10,12 +10,7 @@ data class OrderItem(
     var name: String? = null,
     var image: String? = null,
     var quantity: Int = 1
-) {
-    val subtotal: Double
-        get() {
-            return price * quantity
-        }
-}
+)
 
 
 fun List<OrderItem>.total(): Double {

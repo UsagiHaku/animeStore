@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.animestore.R
 import com.example.domain.OrderItem
+import com.example.utils.formatToMxn
 import com.squareup.picasso.Picasso
 import java.util.*
 import kotlin.collections.ArrayList
@@ -62,7 +63,7 @@ class ListCartAdapter(
 
         fun setData(item: OrderItem, listener: OnOrderItemClickListener) {
             name.text = item.name ?: context.getString(R.string.no_title)
-            price.text = item.price.toString()
+            price.text = item.price.formatToMxn()
             Picasso.with(context)
                 .load("https://images-na.ssl-images-amazon.com/images/I/81CVIiw%2BHgL._SX342_.jpg")
                 .into(image)

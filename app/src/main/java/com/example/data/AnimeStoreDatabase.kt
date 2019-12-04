@@ -5,11 +5,13 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.domain.OrderItem
+import com.example.domain.User
 
-@Database(entities = arrayOf(OrderItem::class), version = 1, exportSchema = false)
+@Database(entities = [OrderItem::class, User::class], version = 2, exportSchema = false)
 abstract class AnimeStoreDatabase : RoomDatabase() {
 
     abstract fun orderItemDao(): OrderItemDao
+    abstract fun userDao(): UserDao
 
     companion object {
         // Singleton prevents multiple instances of database opening at the
@@ -27,7 +29,8 @@ abstract class AnimeStoreDatabase : RoomDatabase() {
                     context.applicationContext,
                     AnimeStoreDatabase::class.java,
                     "anime_store_database"
-                ).build()
+                ).fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
                 return instance
             }

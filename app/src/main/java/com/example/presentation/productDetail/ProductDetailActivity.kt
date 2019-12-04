@@ -10,10 +10,14 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.animestore.R
 import com.example.data.AnimeStoreDatabase
 import com.example.data.OrderItemRepository
+import com.example.data.SessionManager
 import com.example.domain.OrderItem
 import com.example.domain.Product
 import com.example.presentation.cart.CartActivity
+import com.example.presentation.listProducts.ListProductsActivity
 import com.example.toolbar.ToolbarBuilder
+import com.example.utils.resetStack
+import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.product_detail.*
 import java.util.concurrent.Executors
@@ -25,6 +29,7 @@ class ProductDetailActivity : AppCompatActivity(), ProductDetailContract.View {
 
     private lateinit var product: Product
 
+    private lateinit var sessionManager: SessionManager
     private lateinit var orderItemsRepository: OrderItemRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +37,8 @@ class ProductDetailActivity : AppCompatActivity(), ProductDetailContract.View {
         setContentView(R.layout.product_detail)
 
         ToolbarBuilder(this)
+
+        sessionManager = SessionManager(this)
 
         productName = findViewById(R.id.productName)
         productImage = findViewById(R.id.productImage)
@@ -86,8 +93,12 @@ class ProductDetailActivity : AppCompatActivity(), ProductDetailContract.View {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
 
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
+        if(sessionManager.isLogged()) {
+            menuInflater.inflate(R.menu.menu_with_logout, menu)
+        } else {
+            menuInflater.inflate(R.menu.menu_main, menu)
+        }
+
         return true
     }
 
@@ -96,6 +107,16 @@ class ProductDetailActivity : AppCompatActivity(), ProductDetailContract.View {
 
         if (id == R.id.shopping_cart) {
             startActivity(Intent(applicationContext, CartActivity::class.java))
+            return true
+        }
+
+        if(id == R.id.logout) {
+            sessionManager.logout()
+
+            val intent = Intent(applicationContext, ListProductsActivity::class.java)
+                .resetStack()
+            startActivity(intent)
+
             return true
         }
 

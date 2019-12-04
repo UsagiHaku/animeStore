@@ -6,6 +6,13 @@
         android:layout_height="match_parent">
 
     <item
+            android:id="@+id/logout"
+            android:icon="@drawable/ic_exit_to_app_black_24dp"
+            android:iconTint="@color/white"
+            android:title="Cerrar Sesión"
+            app:showAsAction="always" />
+
+    <item
             android:id="@+id/shopping_cart"
             android:icon="@drawable/ic_shopping_cart"
             android:iconTint="@color/white"

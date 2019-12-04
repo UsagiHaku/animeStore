@@ -13,7 +13,11 @@ import com.example.domain.total
 import com.example.presentation.listProducts.ListProductsActivity
 import com.example.toolbar.ToolbarBuilder
 import com.example.utils.formatToMxn
+import com.example.utils.resetStack
 import kotlinx.android.synthetic.main.confirm_order_layout.*
+import kotlinx.android.synthetic.main.confirm_order_layout.cancelProcess
+import kotlinx.android.synthetic.main.confirm_order_layout.finishProcess
+import kotlinx.android.synthetic.main.payment_layout.*
 import java.util.concurrent.Executors
 
 class ConfirmOrderActivity: AppCompatActivity() {
@@ -48,9 +52,15 @@ class ConfirmOrderActivity: AppCompatActivity() {
         finishProcess?.setOnClickListener {
             orderItemsRepository.removeAll {
                 val intent = Intent(applicationContext, SuccessPaymentActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    .resetStack()
                 startActivity(intent)
             }
+        }
+
+        cancelProcess?.setOnClickListener {
+            val intent = Intent(applicationContext, ListProductsActivity::class.java)
+                .resetStack()
+            startActivity(intent)
         }
     }
 

@@ -8,10 +8,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.animestore.R
+import com.example.data.SessionManager
 import com.example.domain.Product
 import com.example.presentation.cart.CartActivity
 import com.example.presentation.productDetail.ProductDetailActivity
 import com.example.toolbar.ToolbarBuilder
+import com.example.utils.resetStack
+import com.google.android.material.snackbar.Snackbar
 
 
 class ListProductsActivity : AppCompatActivity(), ListProductsContract.View {
@@ -19,11 +22,15 @@ class ListProductsActivity : AppCompatActivity(), ListProductsContract.View {
     private var adapter: ListProductsAdapter? = null
     private var presenter: ListProductsContract.Presenter? = null
 
+    private lateinit var sessionManager: SessionManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.list_products)
 
         presenter = ListProductsPresenter(this)
+
+        sessionManager = SessionManager(baseContext)
 
         ToolbarBuilder(this)
 
@@ -53,7 +60,12 @@ class ListProductsActivity : AppCompatActivity(), ListProductsContract.View {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
 
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
+        if(sessionManager.isLogged()) {
+            menuInflater.inflate(R.menu.menu_with_logout, menu)
+        } else {
+            menuInflater.inflate(R.menu.menu_main, menu)
+        }
+
         return true
     }
 
@@ -62,6 +74,16 @@ class ListProductsActivity : AppCompatActivity(), ListProductsContract.View {
 
         if (id == R.id.shopping_cart) {
             startActivity(Intent(applicationContext, CartActivity::class.java))
+            return true
+        }
+
+        if(id == R.id.logout) {
+            sessionManager.logout()
+
+            val intent = Intent(applicationContext, ListProductsActivity::class.java)
+                .resetStack()
+            startActivity(intent)
+
             return true
         }
 

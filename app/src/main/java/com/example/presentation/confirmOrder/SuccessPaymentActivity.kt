@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.animestore.R
 import com.example.presentation.listProducts.ListProductsActivity
 import com.example.toolbar.ToolbarBuilder
+import com.example.utils.resetStack
 import kotlinx.android.synthetic.main.success_payment_layout.*
 
 
@@ -20,7 +21,7 @@ class SuccessPaymentActivity : AppCompatActivity() {
 
         goHomeButton?.setOnClickListener {
             val intent = Intent(applicationContext, ListProductsActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                .resetStack()
             startActivity(intent)
         }
     }
